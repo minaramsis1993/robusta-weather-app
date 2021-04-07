@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { adaptDataToUI } from './adapters/data';
 import './App.css';
 import CityDetails from './components/CurrentCityDetails';
 import CurrentCity from './components/CurrentCitySection';
@@ -27,8 +28,12 @@ function App() {
     //   }
     // }
     // getCityWeather();
-    setTemperatureInfo(Data);
+    setTemperatureInfo(adaptDataToUI(Data));
   }, []);
+
+  useEffect(() => {
+    console.log('temperatureInfo', temperatureInfo);
+  }, [temperatureInfo]);
 
   const changeTemperatureType = (type) => {
     setTemperatureType(type);
@@ -41,8 +46,8 @@ function App() {
           temperatureType={temperatureType}
           changeTemperatureType={changeTemperatureType}
         />
-        <CurrentCity />
-        <CityDetails />
+        <CurrentCity currentCityData={temperatureInfo?.currentCityData} />
+        <CityDetails temperatureInfo={temperatureInfo} />
       </div>
     </div>
   );

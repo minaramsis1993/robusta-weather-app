@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HeaderStyles from './index.module.css';
 import { TemperatureTypes } from '../../util/constants';
 
 const Header = ({ temperatureType, changeTemperatureType }) => {
-  // const [temperatureType, setTemperatureType] = useState(
-  //   TemperatureTypes.CELSIUS
-  // );
-
   const temperatureChangeHandler = (type) => {
     changeTemperatureType(type);
   };
@@ -23,7 +19,7 @@ const Header = ({ temperatureType, changeTemperatureType }) => {
           }
           onClick={() => temperatureChangeHandler(CELSIUS)}
         >
-          C
+          {CELSIUS}
         </button>
         <button
           className={
@@ -31,7 +27,7 @@ const Header = ({ temperatureType, changeTemperatureType }) => {
           }
           onClick={() => temperatureChangeHandler(FAHRENHEIT)}
         >
-          F
+          {FAHRENHEIT}
         </button>
       </div>
     </div>

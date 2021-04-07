@@ -9,3 +9,8 @@ export const TemperatureTypes = {
   CELSIUS: 'C',
   FAHRENHEIT: 'F'
 };
+
+export const ForecastTypes = {
+  HOURLY: 'H',
+  DAILY: 'D'
+};

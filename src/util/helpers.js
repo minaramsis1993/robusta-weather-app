@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const getWeekDay = (d) => {
   const weekday = [];
   weekday[0] = 'Sunday';
@@ -8,4 +10,19 @@ export const getWeekDay = (d) => {
   weekday[5] = 'Friday';
   weekday[6] = 'Saturday';
   return weekday[d.getDay()];
+};
+
+export const getHourFromMS = (ms) => {
+  return moment.utc(ms).format('HH:mm');
+};
+
+export const toSVGs = (reqSvgs) => {
+  return reqSvgs.keys().reduce((images, path) => {
+    const key = path.substring(
+      path.lastIndexOf('/') + 1,
+      path.lastIndexOf('.')
+    );
+    images[key] = reqSvgs(path).default;
+    return images;
+  }, {});
 };
