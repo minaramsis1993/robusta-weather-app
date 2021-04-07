@@ -1,0 +1,84 @@
+.Wrapper {
+  margin-top: 68px;
+}
+
+.Tabs {
+  border-bottom: 1px solid #fff;
+  margin-top: -1px;
+}
+
+.Tabs button {
+  font-style: normal;
+  font-size: 22px;
+  line-height: 26px;
+  padding: 15px 0;
+  cursor: pointer;
+}
+.Tabs button:not(:last-child) {
+  margin-right: 59px;
+}
+
+.Tabs button.Activated {
+  font-weight: bold;
+  border-bottom: 3px solid #fff;
+}
+
+.ResultsWrapper {
+  display: flex;
+  justify-content: left;
+  overflow-x: auto;
+  border-bottom: 1px solid #fff;
+}
+
+.ResultsWrapper::-webkit-scrollbar {
+  height: 6px;
+  border-radius: 5px;
+}
+
+.ResultsWrapper::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+.ResultsWrapper::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 10px;
+}
+
+.ItemContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 35px;
+}
+/* div.ItemContainer:not(:first-child),
+div.ItemContainer:not(:last-child) {
+  padding: 0 35px;
+  color: blue;
+} */
+div.ItemContainer:first-child {
+  padding: 0;
+  color: blue;
+}
+.ItemContainer .Icon {
+  margin-top: 14px;
+  margin-bottom: 26px;
+  width: 66px;
+}
+
+.ItemContainer .Time {
+  margin-top: 37px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+}
+
+.ItemContainer .Temp {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 42px;
+  letter-spacing: 0.05em;
+}
