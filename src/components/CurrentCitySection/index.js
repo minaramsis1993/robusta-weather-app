@@ -1,13 +1,19 @@
 import React from 'react';
 import CurrentCityStyles from './index.module.css';
 import cloudy from '../../svgs/partly-cloudy-day.svg';
+import { getWeekDay } from '../../util/helpers';
 
 const CurrentCity = () => {
+  const today = new Date();
+  // weekday, dd yyyy
+  const todayFormatted = `${getWeekDay(
+    today
+  )}, ${today.getDate()} ${today.getFullYear()}`;
   return (
     <div className={CurrentCityStyles.Wrapper}>
       <div className="left">
         <h2>New Cairo</h2>
-        <p className={CurrentCityStyles.Date}>Friday 20, 2020</p>
+        <p className={CurrentCityStyles.Date}>{todayFormatted}</p>
         <img
           src={cloudy}
           alt="partly-cloudy-day"
