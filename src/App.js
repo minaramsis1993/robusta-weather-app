@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { adaptDataToUI } from './adapters/data';
+import { adaptDataToUI, convertData } from './adapters/data';
 import './App.css';
 import CityDetails from './components/CurrentCityDetails';
 import CurrentCity from './components/CurrentCitySection';
@@ -9,9 +9,9 @@ import Data from './mock/data.json';
 // import { API_ENDPOINT } from './util/constants';
 import { TemperatureTypes } from './util/constants';
 function App() {
-  const [temperatureInfo, setTemperatureInfo] = useState([]);
+  const [temperatureInfo, setTemperatureInfo] = useState(null);
   const [temperatureType, setTemperatureType] = useState(
-    TemperatureTypes.CELSIUS
+    TemperatureTypes.FAHRENHEIT
   );
 
   useEffect(() => {
@@ -31,13 +31,23 @@ function App() {
     setTemperatureInfo(adaptDataToUI(Data));
   }, []);
 
-  useEffect(() => {
-    console.log('temperatureInfo', temperatureInfo);
-  }, [temperatureInfo]);
+  // useEffect(() => {
+  //   console.log('temperatureInfo', temperatureInfo);
+  //   // console.log('getCurrentDay', getCurrentDay());
+  // }, [temperatureInfo]);
 
   const changeTemperatureType = (type) => {
     setTemperatureType(type);
   };
+
+  useEffect(() => {
+    console.log('temperatureInfo', temperatureInfo);
+    if (temperatureInfo) {
+      const res = convertData(temperatureInfo, temperatureType);
+      console.log('res', res);
+      // setTemperatureInfo(res);
+    }
+  }, [temperatureType]);
 
   return (
     <div className="App">

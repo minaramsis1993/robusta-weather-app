@@ -10,6 +10,11 @@ const CityDetails = (props) => {
 
   const { temperatureInfo } = props;
 
+  const setType = (e, type) => {
+    e.preventDefault();
+    setForecastType(type);
+  };
+
   const { DAILY, HOURLY } = ForecastTypes;
   return (
     <div className={CityDetailsStyles.Wrapper}>
@@ -18,7 +23,10 @@ const CityDetails = (props) => {
           className={
             forecastType === HOURLY ? CityDetailsStyles.Activated : undefined
           }
-          onClick={() => setForecastType(HOURLY)}
+          onClick={(e) => {
+            setType(e, HOURLY);
+          }}
+          type="button"
         >
           Hourly
         </button>
@@ -26,7 +34,10 @@ const CityDetails = (props) => {
           className={
             forecastType === DAILY ? CityDetailsStyles.Activated : undefined
           }
-          onClick={() => setForecastType(DAILY)}
+          onClick={(e) => {
+            setType(e, DAILY);
+          }}
+          type="button"
         >
           Daily
         </button>
@@ -36,7 +47,27 @@ const CityDetails = (props) => {
           temperatureInfo?.adaptedHourly &&
           temperatureInfo?.adaptedHourly.map((obj, index) => (
             <div className={CityDetailsStyles.ItemContainer} key={index}>
-              <span className={CityDetailsStyles.Time}>{obj.hour}</span>
+              <span className={CityDetailsStyles.Time}>
+                {index === 0 ? 'Now' : obj.hour}
+              </span>
+              <img
+                src={svgs[obj.icon]}
+                alt={obj.icon}
+                className={CityDetailsStyles.Icon}
+              />
+              <p className={CityDetailsStyles.Temp}>
+                {obj.apparentTemperature}
+                <sup>°</sup>
+              </p>
+            </div>
+          ))}
+        {forecastType === DAILY &&
+          temperatureInfo?.adaptedHourly &&
+          temperatureInfo?.adaptedDaily.map((obj, index) => (
+            <div className={CityDetailsStyles.ItemContainer} key={index}>
+              <span className={CityDetailsStyles.Time}>
+                {index === 0 ? 'Today' : obj.weekDay}
+              </span>
               <img
                 src={svgs[obj.icon]}
                 alt={obj.icon}
