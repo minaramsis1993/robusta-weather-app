@@ -64,10 +64,9 @@ export const convertDegType = (type, degs) => {
   // Celsius To => FAHRENHEIT
   if (type === TemperatureTypes.FAHRENHEIT) {
     res = degs * 1.8 + 32;
-    return res.toFixed(2);
   } else {
     // FAHRENHEIT to => Celsius
     res = (degs - 32) / 1.8;
-    return res.toFixed(2);
   }
+  return res.toFixed(0);
 };

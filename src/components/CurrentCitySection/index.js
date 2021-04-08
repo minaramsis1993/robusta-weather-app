@@ -39,7 +39,7 @@ const CurrentCity = (props) => {
           {currentCityData?.shortSummary}
         </h4>
       </div>
-      <div className="right">
+      <div className={CurrentCityStyles.Right}>
         <h4 className={CurrentCityStyles.CurrentTempNoText}>
           {currentCityData?.apparentTemperature}
           <sup>°</sup>

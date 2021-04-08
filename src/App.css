@@ -7,6 +7,11 @@
   color: #fff;
   height: 100%;
 }
+.Overlay {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
 
 .Container {
   margin: auto;
@@ -14,4 +19,12 @@
   padding-left: 144px;
   padding-right: 144px;
   padding-bottom: 105px;
+}
+
+@media (max-width: 950px) {
+  .Container {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 80px;
+  }
 }

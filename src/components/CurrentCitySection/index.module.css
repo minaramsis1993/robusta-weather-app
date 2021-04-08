@@ -21,6 +21,7 @@ p.Date {
 
 .Logo {
   margin-top: 35px;
+  width: 90px;
 }
 
 .CurrentCityText {
@@ -30,16 +31,18 @@ p.Date {
   line-height: 35px;
 }
 
+.Right {
+  text-align: right;
+}
+
 .CurrentTempNoText {
   font-weight: bold;
   font-size: 144px;
   line-height: 169px;
   letter-spacing: 0.05em;
-  text-align: end;
 }
 
 .HighLowDegreesWrapper {
-  text-align: right;
   font-style: normal;
   font-weight: normal;
   font-size: 48px;
@@ -52,7 +55,6 @@ p.Date {
   font-weight: 600;
   font-size: 24px;
   line-height: 28px;
-  text-align: right;
 }
 
 .High {
@@ -62,4 +64,42 @@ p.Date {
 .Low {
   padding-left: 10px;
   color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 950px) {
+  .Wrapper {
+    margin-top: 4rem;
+    flex-direction: column;
+  }
+  h2 {
+    font-size: 50px;
+    line-height: 45px;
+  }
+  p.Date {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+  .Logo {
+    width: 80px;
+  }
+  .CurrentCityText {
+    font-size: 28px;
+  }
+  .Right {
+    text-align: left;
+  }
+  .CurrentTempNoText {
+    font-size: 105px;
+    line-height: 120px;
+  }
+  .HighLowDegreesWrapper {
+    font-size: 39px;
+    line-height: 45px;
+    margin: 0 0 18px 0;
+  }
+  .StatusText {
+    font-size: 22px;
+    line-height: 24px;
+  }
 }

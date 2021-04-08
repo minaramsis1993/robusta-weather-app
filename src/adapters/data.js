@@ -4,13 +4,16 @@ export const adaptDataToUI = (data) => {
   const hourlyData = cloned['hourly']['data'];
   const dailyData = cloned['daily']['data'];
   const currentDayData = dailyData[0];
+  // I've rounded the temps used with no decimal points for design matching only :)
   return {
     currentCityData: {
       icon: cloned?.currently?.icon,
       shortSummary: cloned?.currently?.summary,
-      apparentTemperature: cloned?.currently?.apparentTemperature,
-      apparentTemperatureHigh: currentDayData?.apparentTemperatureHigh,
-      apparentTemperatureLow: currentDayData?.apparentTemperatureLow,
+      apparentTemperature: cloned?.currently?.apparentTemperature.toFixed(0),
+      apparentTemperatureHigh: currentDayData?.apparentTemperatureHigh.toFixed(
+        0
+      ),
+      apparentTemperatureLow: currentDayData?.apparentTemperatureLow.toFixed(0),
       summary: currentDayData?.summary
     },
     adaptedDaily: dailyData?.map((item, index) => ({
@@ -20,12 +23,12 @@ export const adaptDataToUI = (data) => {
       apparentTemperature: (
         (item.apparentTemperatureHigh + item.apparentTemperatureLow) /
         2
-      ).toFixed(2)
+      ).toFixed(0)
     })),
     adaptedHourly: hourlyData
       ?.map((item) => {
         return {
-          apparentTemperature: item.apparentTemperature,
+          apparentTemperature: +item.apparentTemperature.toFixed(0),
           icon: item.icon
         };
       })

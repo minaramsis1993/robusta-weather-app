@@ -1,6 +1,7 @@
 .Header {
   padding-top: 41px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
@@ -24,7 +25,18 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+
 button.Activated {
   background: rgba(255, 255, 255, 0.25);
   border-left: 2px solid #fff;
+}
+
+@media (max-width: 950px) {
+  .Header {
+    flex-direction: column;
+    align-items: center;
+  }
+  h1 {
+    padding-bottom: 1.6rem;
+  }
 }

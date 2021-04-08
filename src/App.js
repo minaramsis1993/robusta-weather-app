@@ -46,13 +46,15 @@ function App() {
 
   return (
     <div className="App">
-      <div className="Container">
-        <Header
-          temperatureType={temperatureType}
-          changeTemperatureType={changeTemperatureType}
-        />
-        <CurrentCity currentCityData={temperatureInfo?.currentCityData} />
-        <CityDetails temperatureInfo={temperatureInfo} />
+      <div className="Overlay">
+        <div className="Container">
+          <Header
+            temperatureType={temperatureType}
+            changeTemperatureType={changeTemperatureType}
+          />
+          <CurrentCity currentCityData={temperatureInfo?.currentCityData} />
+          <CityDetails temperatureInfo={temperatureInfo} />
+        </div>
       </div>
     </div>
   );
