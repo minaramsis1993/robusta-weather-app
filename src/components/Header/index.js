@@ -8,23 +8,19 @@ const Header = ({ temperatureType, changeTemperatureType }) => {
   };
 
   const { CELSIUS, FAHRENHEIT } = TemperatureTypes;
-
+  const { Header, Activated } = HeaderStyles;
   return (
-    <div className={HeaderStyles.Header}>
+    <div className={Header}>
       <h1>instaweather</h1>
-      <div className="btns-wrapper">
+      <div>
         <button
-          className={
-            temperatureType === CELSIUS ? HeaderStyles.Activated : undefined
-          }
+          className={temperatureType === CELSIUS ? Activated : undefined}
           onClick={() => temperatureChangeHandler(CELSIUS)}
         >
           {CELSIUS}
         </button>
         <button
-          className={
-            temperatureType === FAHRENHEIT ? HeaderStyles.Activated : undefined
-          }
+          className={temperatureType === FAHRENHEIT ? Activated : undefined}
           onClick={() => temperatureChangeHandler(FAHRENHEIT)}
         >
           {FAHRENHEIT}

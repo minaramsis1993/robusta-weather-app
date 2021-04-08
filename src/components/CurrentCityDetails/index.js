@@ -27,13 +27,22 @@ const CityDetails = (props) => {
   }, [forecastType, temperatureInfo]);
 
   const { DAILY, HOURLY } = ForecastTypes;
+  const {
+    Wrapper,
+    Tabs,
+    Activated,
+    ResultsWrapper,
+    ItemContainer,
+    Time,
+    Icon,
+    Temp,
+    HrLine
+  } = CityDetailsStyles;
   return (
-    <div className={CityDetailsStyles.Wrapper}>
-      <div className={CityDetailsStyles.Tabs}>
+    <div className={Wrapper}>
+      <div className={Tabs}>
         <button
-          className={
-            forecastType === HOURLY ? CityDetailsStyles.Activated : undefined
-          }
+          className={forecastType === HOURLY ? Activated : undefined}
           onClick={(e) => {
             setType(e, HOURLY);
           }}
@@ -42,9 +51,7 @@ const CityDetails = (props) => {
           Hourly
         </button>
         <button
-          className={
-            forecastType === DAILY ? CityDetailsStyles.Activated : undefined
-          }
+          className={forecastType === DAILY ? Activated : undefined}
           onClick={(e) => {
             setType(e, DAILY);
           }}
@@ -53,34 +60,28 @@ const CityDetails = (props) => {
           Daily
         </button>
       </div>
-      <div className={CityDetailsStyles.ResultsWrapper}>
+      <div className={ResultsWrapper}>
         {forecastData &&
           forecastData.length &&
           forecastData.map((obj, index) => (
-            <div className={CityDetailsStyles.ItemContainer} key={index}>
+            <div className={ItemContainer} key={index}>
               {forecastType === HOURLY && (
-                <span className={CityDetailsStyles.Time}>
-                  {index === 0 ? 'Now' : obj.hour}
-                </span>
+                <span className={Time}>{index === 0 ? 'Now' : obj.hour}</span>
               )}
               {forecastType === DAILY && (
-                <span className={CityDetailsStyles.Time}>
+                <span className={Time}>
                   {index === 0 ? 'Today' : obj.weekDay}
                 </span>
               )}
-              <img
-                src={svgs[obj.icon]}
-                alt={obj.icon}
-                className={CityDetailsStyles.Icon}
-              />
-              <p className={CityDetailsStyles.Temp}>
+              <img src={svgs[obj.icon]} alt={obj.icon} className={Icon} />
+              <p className={Temp}>
                 {obj.apparentTemperature}
                 <sup>°</sup>
               </p>
             </div>
           ))}
       </div>
-      <div className={CityDetailsStyles.HrLine}></div>
+      <div className={HrLine}></div>
     </div>
   );
 };

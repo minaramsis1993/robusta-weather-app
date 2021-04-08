@@ -23,41 +23,45 @@ const CurrentCity = (props) => {
     }
   }, [currentCityData]);
 
+  const {
+    Wrapper,
+    Left,
+    Logo,
+    CurrentCityText,
+    Right,
+    CurrentTempNoText,
+    HighLowDegreesWrapper,
+    High,
+    Low,
+    StatusText
+  } = CurrentCityStyles;
   return (
-    <div className={CurrentCityStyles.Wrapper}>
-      <div className="left">
+    <div className={Wrapper}>
+      <div className={Left}>
         <h2>New Cairo</h2>
         <p className={CurrentCityStyles.Date}>{todayFormatted}</p>
         {icon.length && (
-          <img
-            className={CurrentCityStyles.Logo}
-            src={icon}
-            alt={currentCityData?.icon}
-          />
+          <img className={Logo} src={icon} alt={currentCityData?.icon} />
         )}
-        <h4 className={CurrentCityStyles.CurrentCityText}>
-          {currentCityData?.shortSummary}
-        </h4>
+        <h4 className={CurrentCityText}>{currentCityData?.shortSummary}</h4>
       </div>
-      <div className={CurrentCityStyles.Right}>
-        <h4 className={CurrentCityStyles.CurrentTempNoText}>
+      <div className={Right}>
+        <h4 className={CurrentTempNoText}>
           {currentCityData?.apparentTemperature}
           <sup>°</sup>
         </h4>
-        <h5 className={CurrentCityStyles.HighLowDegreesWrapper}>
-          <span className={CurrentCityStyles.High}>
+        <h5 className={HighLowDegreesWrapper}>
+          <span className={High}>
             {currentCityData?.apparentTemperatureHigh}
             <sup>°</sup>
           </span>
           <span>/</span>
-          <span className={CurrentCityStyles.Low}>
+          <span className={Low}>
             {currentCityData?.apparentTemperatureLow}
             <sup>°</sup>
           </span>
         </h5>
-        <p className={CurrentCityStyles.StatusText}>
-          {currentCityData?.summary}
-        </p>
+        <p className={StatusText}>{currentCityData?.summary}</p>
       </div>
     </div>
   );

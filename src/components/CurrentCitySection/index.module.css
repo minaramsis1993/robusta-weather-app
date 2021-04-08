@@ -86,8 +86,9 @@ p.Date {
   .CurrentCityText {
     font-size: 28px;
   }
-  .Right {
-    text-align: left;
+  .Right,
+  .Left {
+    text-align: center;
   }
   .CurrentTempNoText {
     font-size: 105px;
