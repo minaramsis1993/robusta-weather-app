@@ -27,7 +27,6 @@
   display: flex;
   justify-content: flex-start;
   overflow-x: auto;
-  /* border-bottom: 1px solid #fff; */
 }
 .HrLine {
   width: 100%;

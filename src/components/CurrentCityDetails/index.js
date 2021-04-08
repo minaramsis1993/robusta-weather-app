@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CityDetailsStyles from './index.module.css';
 import { ForecastTypes } from '../../util/constants';
 import { toSVGs } from '../../util/helpers';
 
 const CityDetails = (props) => {
   const [forecastType, setForecastType] = useState(ForecastTypes.HOURLY);
+  const [forecastData, setForecastData] = useState([]);
+
   const reqSvgs = require.context('../../svgs', true, /\.svg$/);
   const svgs = toSVGs(reqSvgs);
 
@@ -14,6 +16,15 @@ const CityDetails = (props) => {
     e.preventDefault();
     setForecastType(type);
   };
+
+  useEffect(() => {
+    const { HOURLY } = ForecastTypes;
+    if (forecastType === HOURLY && temperatureInfo) {
+      setForecastData(temperatureInfo?.adaptedHourly);
+    } else {
+      setForecastData(temperatureInfo?.adaptedDaily);
+    }
+  }, [forecastType, temperatureInfo]);
 
   const { DAILY, HOURLY } = ForecastTypes;
   return (
@@ -43,31 +54,20 @@ const CityDetails = (props) => {
         </button>
       </div>
       <div className={CityDetailsStyles.ResultsWrapper}>
-        {forecastType === ForecastTypes.HOURLY &&
-          temperatureInfo?.adaptedHourly &&
-          temperatureInfo?.adaptedHourly.map((obj, index) => (
+        {forecastData &&
+          forecastData.length &&
+          forecastData.map((obj, index) => (
             <div className={CityDetailsStyles.ItemContainer} key={index}>
-              <span className={CityDetailsStyles.Time}>
-                {index === 0 ? 'Now' : obj.hour}
-              </span>
-              <img
-                src={svgs[obj.icon]}
-                alt={obj.icon}
-                className={CityDetailsStyles.Icon}
-              />
-              <p className={CityDetailsStyles.Temp}>
-                {obj.apparentTemperature}
-                <sup>°</sup>
-              </p>
-            </div>
-          ))}
-        {forecastType === DAILY &&
-          temperatureInfo?.adaptedHourly &&
-          temperatureInfo?.adaptedDaily.map((obj, index) => (
-            <div className={CityDetailsStyles.ItemContainer} key={index}>
-              <span className={CityDetailsStyles.Time}>
-                {index === 0 ? 'Today' : obj.weekDay}
-              </span>
+              {forecastType === HOURLY && (
+                <span className={CityDetailsStyles.Time}>
+                  {index === 0 ? 'Now' : obj.hour}
+                </span>
+              )}
+              {forecastType === DAILY && (
+                <span className={CityDetailsStyles.Time}>
+                  {index === 0 ? 'Today' : obj.weekDay}
+                </span>
+              )}
               <img
                 src={svgs[obj.icon]}
                 alt={obj.icon}

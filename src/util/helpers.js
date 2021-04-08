@@ -58,21 +58,16 @@ export const toSVGs = (reqSvgs) => {
   }, {});
 };
 
-export const fahrenheitToCelsius = (fDeg) => {
-  return (fDeg - 32) * (5 / 9);
-};
-
-export const celsiusToFahrenheit = (cDeg) => {
-  return cDeg * (9 / 5) + 32;
-};
-
+// type represents convToType
 export const convertDegType = (type, degs) => {
-  console.log('degs', degs);
+  let res;
+  // Celsius To => FAHRENHEIT
   if (type === TemperatureTypes.FAHRENHEIT) {
-    return (degs - 32) * (5 / 9);
+    res = degs * 1.8 + 32;
+    return res.toFixed(2);
   } else {
-    console.log('HERE');
-    console.log('res', degs * (9 / 5) + 32);
-    return degs * (9 / 5) + 32;
+    // FAHRENHEIT to => Celsius
+    res = (degs - 32) / 1.8;
+    return res.toFixed(2);
   }
 };

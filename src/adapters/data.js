@@ -1,11 +1,4 @@
-import {
-  celsiusToFahrenheit,
-  convertDegType,
-  fahrenheitToCelsius,
-  getDaysArr,
-  getHoursArr
-} from '../util/helpers';
-import { TemperatureTypes } from '../util/constants';
+import { convertDegType, getDaysArr, getHoursArr } from '../util/helpers';
 export const adaptDataToUI = (data) => {
   const cloned = { ...data };
   const hourlyData = cloned['hourly']['data'];
@@ -47,33 +40,31 @@ export const adaptDataToUI = (data) => {
 export const convertData = (data, degreeType) => {
   const cloned = { ...data };
   const { adaptedDaily, adaptedHourly, currentCityData } = cloned;
-  console.log('data', data);
-  console.log('degreeType', degreeType);
   const res = {
+    ...cloned,
     adaptedDaily: adaptedDaily.map((item) => ({
       ...item,
       apparentTemperature: convertDegType(degreeType, +item.apparentTemperature)
     })),
-    // adaptedHourly: adaptedHourly.map((item) => ({
-    //   ...item,
-    //   apparentTemperature: convertDegType(degreeType, +item.apparentTemperature)
-    // })),
-    // currentCityData: {
-    //   ...currentCityData,
-    //   apparentTemperature: convertDegType(
-    //     degreeType,
-    //     +currentCityData.apparentTemperature
-    //   ),
-    //   apparentTemperatureHigh: convertDegType(
-    //     degreeType,
-    //     +currentCityData.apparentTemperatureHigh
-    //   ),
-    //   apparentTemperatureLow: convertDegType(
-    //     degreeType,
-    //     +currentCityData.apparentTemperatureLow
-    //   )
-    // },
-    ...cloned
+    adaptedHourly: adaptedHourly.map((item) => ({
+      ...item,
+      apparentTemperature: convertDegType(degreeType, +item.apparentTemperature)
+    })),
+    currentCityData: {
+      ...currentCityData,
+      apparentTemperature: convertDegType(
+        degreeType,
+        +currentCityData.apparentTemperature
+      ),
+      apparentTemperatureHigh: convertDegType(
+        degreeType,
+        +currentCityData.apparentTemperatureHigh
+      ),
+      apparentTemperatureLow: convertDegType(
+        degreeType,
+        +currentCityData.apparentTemperatureLow
+      )
+    }
   };
   return res;
 };

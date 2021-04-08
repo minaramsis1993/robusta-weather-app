@@ -8,6 +8,7 @@ import Data from './mock/data.json';
 
 // import { API_ENDPOINT } from './util/constants';
 import { TemperatureTypes } from './util/constants';
+
 function App() {
   const [temperatureInfo, setTemperatureInfo] = useState(null);
   const [temperatureType, setTemperatureType] = useState(
@@ -31,22 +32,16 @@ function App() {
     setTemperatureInfo(adaptDataToUI(Data));
   }, []);
 
-  // useEffect(() => {
-  //   console.log('temperatureInfo', temperatureInfo);
-  //   // console.log('getCurrentDay', getCurrentDay());
-  // }, [temperatureInfo]);
-
   const changeTemperatureType = (type) => {
     setTemperatureType(type);
   };
 
   useEffect(() => {
-    console.log('temperatureInfo', temperatureInfo);
     if (temperatureInfo) {
       const res = convertData(temperatureInfo, temperatureType);
-      console.log('res', res);
-      // setTemperatureInfo(res);
+      setTemperatureInfo(res);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [temperatureType]);
 
   return (
