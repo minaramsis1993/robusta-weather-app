@@ -5,9 +5,10 @@ import CityDetails from './components/CurrentCityDetails';
 import CurrentCity from './components/CurrentCitySection';
 import Header from './components/Header';
 import Data from './mock/data.json';
+import { TemperatureTypes } from './util/constants';
 
 // import { API_ENDPOINT } from './util/constants';
-import { TemperatureTypes } from './util/constants';
+// import { getCityInfo } from './util/helpers';
 
 function App() {
   const [temperatureInfo, setTemperatureInfo] = useState(null);
@@ -16,7 +17,11 @@ function App() {
   );
 
   useEffect(() => {
-    console.log('Data', Data);
+    // getCityInfo();
+  }, []);
+
+  useEffect(() => {
+    // console.log('Data', Data);
     // THERE IS AN ERROR WITH THE API
     // Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
     // So I've mocked the data in a json file
